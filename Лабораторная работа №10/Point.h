@@ -58,11 +58,15 @@ struct point
 		return x * x + y * y;
 	}
 
-	double dot(const point& B) const {
+	double dist() const {
+		return sqrt(x * x + y * y);
+	}
+
+	double dot(const point& B) const {// скалярное произведение
 		return x * B.x + y * B.y;
 	}
 
-	double cross(const point& B) const {
+	double cross(const point& B) const {// вектрное произведение
 		return x * B.y - y * B.x;
 	}
 

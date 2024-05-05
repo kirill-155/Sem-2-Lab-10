@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include "Point.h"
 #include "Line.h"
 
