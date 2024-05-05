@@ -19,14 +19,14 @@ struct point
 		return *this;
 	}
 
-	point operator+(point B) const {
+	point operator+(const point& B) const {
 		point res;
 		res.x = x + B.x;
 		res.y = y + B.y;
 		return res;
 	}
 
-	point operator-(point B) const {
+	point operator-(const point& B) const {
 		point res;
 		res.x = x - B.x;
 		res.y = y - B.y;
