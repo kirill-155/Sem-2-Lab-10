@@ -11,7 +11,7 @@ struct point
 	template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 	point(T x, T y) : x(x), y(y) {}
 
-	point(point& p) : x(p.x), y(p.y) {}
+	point(const point& p) : x(p.x), y(p.y) {}
 
 	point& operator=(const point& B) {
 		x = B.x;

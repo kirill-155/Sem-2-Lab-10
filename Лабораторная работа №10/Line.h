@@ -3,9 +3,9 @@
 #include "Point.h"
 
 class Line {
+public:
 	double A, B, C;
 
-public:
 	Line(point p1, point p2) {
 		p1.line(p2, A, B, C);
 	}

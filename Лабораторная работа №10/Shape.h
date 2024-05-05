@@ -14,8 +14,8 @@ public:
 	virtual bool isCongruentTo(const Shape& another) const = 0;// равна ли эта фигура другой в геометрическом смысле
 	virtual bool isSimilarTo(const Shape& another) const = 0;  // подобна ли эта фигура другой
 	virtual bool containsPoint(point point) const = 0;// находитс€ ли точка внутри фигуры
-	virtual bool rotate(point center, double angle) const = 0;// поворот на угол (в градусах, против часовой стрелки) относительно точки
-	virtual bool reflex(point center) const = 0;// симметрию относительно точки
-	virtual bool reflex(Line axis) const = 0;// симметрию относительно пр€мой
-	virtual bool scale(point center, double coefficient) const = 0;// гомотетию с коэффициентом coefficient и центром center
+	virtual void rotate(point center, double angle) = 0;// поворот на угол (в градусах, против часовой стрелки) относительно точки
+	virtual void reflex(point center) = 0;// симметрию относительно точки
+	virtual void reflex(Line axis) = 0;// симметрию относительно пр€мой
+	virtual void scale(point center, double coefficient) = 0;// гомотетию с коэффициентом coefficient и центром center
 };
