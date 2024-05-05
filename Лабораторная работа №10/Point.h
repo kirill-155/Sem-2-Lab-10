@@ -4,7 +4,7 @@
 
 struct point
 {
-	double x, y;
+	double x = 0, y = 0;
 
 	point() = default;
 
