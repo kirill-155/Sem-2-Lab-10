@@ -130,10 +130,18 @@
     <ClCompile Include="Лабораторная работа №10.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="glut.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="Shape.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="glut.def" />
+    <None Include="glut32.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="glut32.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

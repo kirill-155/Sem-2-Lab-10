@@ -32,5 +32,21 @@
     <ClInclude Include="Polygon.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="glut.h">
+      <Filter>Файлы ресурсов</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="glut.def">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="glut32.dll">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="glut32.lib">
+      <Filter>Файлы ресурсов</Filter>
+    </Library>
   </ItemGroup>
 </Project>
