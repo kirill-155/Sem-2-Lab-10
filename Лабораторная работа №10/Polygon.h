@@ -6,6 +6,7 @@
 using std::vector;
 
 class Polygon : public Shape {
+protected:
 	vector<point> Vertices;
 
 public:
@@ -19,7 +20,7 @@ public:
 		return Vertices.size();
 	}
 
-	vector<point> getVertices() {//сами вершины без возможности изменения
+	vector<point> getVertices() const {//сами вершины без возможности изменения
 		vector<point> v = Vertices;
 		return v;
 	}
