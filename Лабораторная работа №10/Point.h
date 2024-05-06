@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 
+class Line;
 
 struct point
 {
@@ -114,5 +115,5 @@ struct point
 		scale(center, -1);
 	}
 
-	void reflect(const Line&);
+	void reflect(const Line& line);
 };
