@@ -1,5 +1,4 @@
 #pragma once
-#define _USE_MATH_DEFINES
 #include <vector>
 #include "Shape.h"
 
@@ -12,8 +11,7 @@ public:
 	// Конструкторы
 	Polygon(const vector<point>& ver) : Vertices(ver) {}
 
-	template<typename... T>
-	Polygon(T... points) : Vertices({ points... }) {};
+	Polygon(std::initializer_list<point> points) : Vertices(points) {};
 
 	//Методы
 	int verticesCount() const {//количество вершин
