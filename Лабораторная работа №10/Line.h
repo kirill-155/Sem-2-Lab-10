@@ -32,6 +32,10 @@ public:
 		return !(*this == l);
 	}
 
+	Line orthogonal(const Line line, const point axis = { 0, 0 }) {
+		return { point(axis.x, axis.y), point(axis.x + line.A, axis.y + line.B) };
+	}
+
 };
 
 void point::reflect(const Line& line) {
