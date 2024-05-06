@@ -1,4 +1,5 @@
 #pragma once
+#define _USE_MATH_DEFINES
 #include <vector>
 #include "Shape.h"
 
@@ -145,11 +146,12 @@ public:
 		return result;
 	}
 	void rotate(point center, double angle) override {// поворот на угол (в градусах, против часовой стрелки) относительно точки
+		double rad = (angle / 180) * M_PI;
 		for (int i = 0; i < Vertices.size(); i++)
 		{
 			point c = (Vertices[i] - center);
-			Vertices[i].x = c.x * cos(angle) - c.y * sin(angle) + center.x;
-			Vertices[i].y = c.x * sin(angle) + c.y * cos(angle) + center.y;
+			Vertices[i].x = c.x * cos(rad) - c.y * sin(rad) + center.x;
+			Vertices[i].y = c.x * sin(rad) + c.y * cos(rad) + center.y;
 		}
 	}
 	void reflex(point center) override {// симметрию относительно точки

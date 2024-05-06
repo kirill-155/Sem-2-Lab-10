@@ -97,4 +97,22 @@ struct point
 		out << p.x << " " << p.y;
 		return out;
 	}
+
+	void rotate(const point& center, double rad) {
+		double x_2 = center.x + cos(rad) * (x - center.x) - sin(rad) * (y - center.y);
+		double y_2 = center.y + sin(rad) * (x - center.x) + cos(rad) * (y - center.y);
+		x = x_2;
+		y = y_2;
+	}
+
+	void scale(const point& center, double coe) {
+		x = (x - center.x) * coe + center.x;
+		y = (y - center.y) * coe + center.y;
+	}
+
+	void reflect(const point& center) {
+		scale(center, -1);
+	}
+
+	void reflect(const Line&);
 };

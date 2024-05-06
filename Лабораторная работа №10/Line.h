@@ -33,3 +33,18 @@ public:
 	}
 
 };
+
+void point::reflect(const Line& line) {
+	if (line.B == 0)
+	{
+		x = (-line.C / line.A) * 2 - x;
+		y = (-line.C / line.A) * 2 - y;
+	}
+	else
+	{
+		point P;
+		P.x = -(line.A * line.C + line.B * (line.A * y - line.B * x)) / line.A * line.A + line.B * line.B;
+		P.y = -(line.A * P.x + line.C) / line.B;
+		*this = P * 2 - *this;
+	}
+}
