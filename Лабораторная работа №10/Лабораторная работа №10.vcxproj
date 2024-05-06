@@ -130,6 +130,7 @@
     <ClCompile Include="Лабораторная работа №10.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Circle.h" />
     <ClInclude Include="Ellipse.h" />
     <ClInclude Include="glut.h" />
     <ClInclude Include="GlutSettings.h" />
