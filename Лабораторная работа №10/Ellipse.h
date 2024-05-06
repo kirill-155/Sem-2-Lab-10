@@ -8,6 +8,8 @@ const double epsilon = 1e-3;
 
 class Ellipse : public Shape {
 	point f1, f2;
+
+protected:
 	double dist;
 
 	std::pair<double,double> abc() const {
