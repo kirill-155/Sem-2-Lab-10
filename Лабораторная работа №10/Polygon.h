@@ -1,5 +1,5 @@
 #pragma once
-#define _USE_MATH_DEFINES
+#include <iostream>
 #include <vector>
 #include "Shape.h"
 
@@ -147,7 +147,7 @@ public:
 		return result;
 	}
 	void rotate(point center, double angle) override {// поворот на угол (в градусах, против часовой стрелки) относительно точки
-		double rad = (angle / 180);// *M_PI;
+		double rad = (angle / 180) * M_PI;
 		for (int i = 0; i < Vertices.size(); i++)
 		{
 			point c = (Vertices[i] - center);
