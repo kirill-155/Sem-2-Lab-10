@@ -33,18 +33,18 @@ public:
 		return !(*this == l);
 	}
 
-	Line orthogonal(const Line line, const point axis = { 0, 0 }) {
-		return { point(axis.x, axis.y), point(axis.x + line.A, axis.y + line.B) };
-	}
-
-	point intersect(const Line& first, const Line& second) {// точка пересечения
-		assert(!(first.A * second.B - second.A * first.B < 0.00001));
-		double x = (first.B * second.C - second.B * first.C) / (first.A * second.B - second.A * first.B);
-		double y = (first.C * second.A - second.C * first.C) / (first.A * second.B - second.A * first.B);
-		return { x, y };
-	}
-
 };
+
+Line orthogonal(const Line line, const point axis = { 0, 0 }) {
+	return { point(axis.x, axis.y), point(axis.x + line.A, axis.y + line.B) };
+}
+
+point intersect(const Line& first, const Line& second) {// точка пересечения
+	assert(!(first.A * second.B - second.A * first.B < 0.00001));
+	double x = (first.B * second.C - second.B * first.C) / (first.A * second.B - second.A * first.B);
+	double y = (first.C * second.A - second.C * first.C) / (first.A * second.B - second.A * first.B);
+	return { x, y };
+}
 
 void point::reflect(const Line& line) {
 	if (line.B == 0)

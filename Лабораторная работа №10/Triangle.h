@@ -1,4 +1,5 @@
 #pragma once
+#include "Line.h"
 #include "Polygon.h"
 #include "Circle.h"
 
