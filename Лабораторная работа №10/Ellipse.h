@@ -43,15 +43,15 @@ public:
 	}
 
 	//Методы из Shape 
-	virtual double perimeter() const override {// периметр
+	double perimeter() const override {// периметр
 		auto params = abc();
 		return M_PI * (3 * (params.first + params.second) - sqrtl((3 * params.first + params.second) * (params.first + 3 * params.second)));
 	}
-	virtual double area() const override {// площадь
+	double area() const override {// площадь
 		auto params = abc();
 		return M_PI * params.first * params.second;
 	}
-	virtual bool operator==(const Shape& another) const override {// совпадает ли эта фигура с другой
+	bool operator==(const Shape& another) const override {// совпадает ли эта фигура с другой
 		auto casted = dynamic_cast<const Ellipse*>(&another);
 		if (casted != nullptr && 
 			(casted->f1 == f1 && casted->f2 == f2 || casted->f1 == f2 && casted->f2 == f1) && 
@@ -60,7 +60,7 @@ public:
 		}
 		return false;
 	}
-	virtual bool isCongruentTo(const Shape& another) const override {// равна ли эта фигура другой в геометрическом смысле
+	bool isCongruentTo(const Shape& another) const override {// равна ли эта фигура другой в геометрическом смысле
 		auto casted = dynamic_cast<const Ellipse*>(&another);
 		if ((casted != nullptr) &&
 			abs((casted->f1, casted->f2).dist() - (f1, f2).dist()) < epsilon &&
@@ -69,7 +69,7 @@ public:
 		}
 		return false;
 	}
-	virtual bool isSimilarTo(const Shape& another) const override {// подобна ли эта фигура другой
+	bool isSimilarTo(const Shape& another) const override {// подобна ли эта фигура другой
 		auto casted = dynamic_cast<const Ellipse*>(&another);
 		if ((casted != nullptr) &&
 			abs((casted->f1, casted->f2).dist() - (f1, f2).dist() * casted->dist / dist) < epsilon) {
@@ -77,26 +77,26 @@ public:
 		}
 		return false;
 	}
-	virtual bool containsPoint(point point) const override {// находится ли точка внутри фигуры
+	bool containsPoint(point point) const override {// находится ли точка внутри фигуры
 		if ((point, f1).dist() + (point, f2).dist() <= dist)
 			return true;
 		
 		return false;
 	}
-	virtual void rotate(point center, double angle) override {// поворот на угол (в градусах, против часовой стрелки) относительно точки
+	void rotate(point center, double angle) override {// поворот на угол (в градусах, против часовой стрелки) относительно точки
 		double rad = (angle / 180) * M_PI;
 		f1.rotate(center, rad);
 		f2.rotate(center, rad);
 	}
-	virtual void reflex(point center) override {// симметрию относительно точки
+	void reflex(point center) override {// симметрию относительно точки
 		f1.reflect(center);
 		f2.reflect(center);
 	}
-	virtual void reflex(Line axis) override {// симметрию относительно прямой
+	void reflex(Line axis) override {// симметрию относительно прямой
 		f1.reflect(axis);
 		f2.reflect(axis);
 	}
-	virtual void scale(point center, double coefficient) override {// гомотетию с коэффициентом coefficient и центром center
+	void scale(point center, double coefficient) override {// гомотетию с коэффициентом coefficient и центром center
 		f1.scale(center, coefficient);
 		f2.scale(center, coefficient);
 		dist *= coefficient;

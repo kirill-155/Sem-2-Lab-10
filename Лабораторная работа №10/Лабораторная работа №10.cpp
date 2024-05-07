@@ -3,6 +3,11 @@
 #include "Line.h"
 #include "Polygon.h"
 #include "GlutSettings.h"
+#include "Ellipse.h"
+#include "Circle.h"
+#include "Rectangle.h"
+#include "Square.h"
+#include "Triangle.h"
 
 void solve() {
 	display();
