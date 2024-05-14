@@ -3,6 +3,8 @@
 #include "Header.h"
 #include "Point.h"
 
+vector<pair<int, int>> list = { {0, 0}, {1, 0}, {2, 0}, {3, 0}, {4,0}, {5, 0}, {6, 0}, {7, 0} };
+
 class Button {
 private:
     double x;
@@ -59,3 +61,8 @@ public:
     }
 
 };
+
+Button bCreate(-40, 255, 80, 40, "Create");
+Button bDelete(-40, 210, 80, 40, "Delete");
+Button bEdit1(-40, 165, 80, 40, "Edit");
+Button bMenu(-145, -255, 60, 30, "Menu");
