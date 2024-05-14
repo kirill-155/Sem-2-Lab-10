@@ -4,7 +4,7 @@
 class Circle : public Ellipse {
 public:
 
-	Circle(point p, double r) : Ellipse(p, p, r) {}
+	Circle(Point p, double r) : Ellipse(p, p, r*2) {}
 
 	// Ìועמהû
 	double radius() const {

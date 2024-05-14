@@ -7,21 +7,21 @@ using std::vector;
 
 class Polygon : public Shape {
 protected:
-	vector<point> Vertices;
+	vector<Point> Vertices;
 
 public:
 	//  онструкторы
-	Polygon(const vector<point>& ver) : Vertices(ver) {}
+	Polygon(const vector<Point>& ver) : Vertices(ver) {}
 
-	Polygon(std::initializer_list<point> points) : Vertices(points) {};
+	Polygon(std::initializer_list<Point> points) : Vertices(points) {};
 
 	//ћетоды
 	int verticesCount() const {//количество вершин
 		return Vertices.size();
 	}
 
-	vector<point> getVertices() const {//сами вершины без возможности изменени€
-		vector<point> v = Vertices;
+	vector<Point> getVertices() const {//сами вершины без возможности изменени€
+		vector<Point> v = Vertices;
 		return v;
 	}
 
@@ -39,6 +39,17 @@ public:
 				return false;
 		}
 		return true;
+	}
+
+	void draw() {
+		glLineWidth(3);
+		glColor3f(0, 1, 0);
+		glBegin(GL_LINE_LOOP);
+		for (int i = 0; i < Vertices.size(); i++) {
+			glVertex2d(Vertices[i].x, Vertices[i].y);
+		}
+		glEnd();
+		glFlush();
 	}
 
 	//ћетоды из Shape 
@@ -132,7 +143,7 @@ public:
 		}
 		return false;
 	}
-	bool containsPoint(point point) const override {// находитс€ ли точка внутри фигуры
+	bool containsPoint(Point point) const override {// находитс€ ли точка внутри фигуры
 		if (verticesCount() <= 2) 
 			return false;
 		
@@ -146,16 +157,16 @@ public:
 		}
 		return result;
 	}
-	void rotate(point center, double angle) override {// поворот на угол (в градусах, против часовой стрелки) относительно точки
+	void rotate(Point center, double angle) override {// поворот на угол (в градусах, против часовой стрелки) относительно точки
 		double rad = (angle / 180) * M_PI;
 		for (int i = 0; i < Vertices.size(); i++)
 		{
-			point c = (Vertices[i] - center);
+			Point c = (Vertices[i] - center);
 			Vertices[i].x = c.x * cos(rad) - c.y * sin(rad) + center.x;
 			Vertices[i].y = c.x * sin(rad) + c.y * cos(rad) + center.y;
 		}
 	}
-	void reflex(point center) override {// симметрию относительно точки
+	void reflex(Point center) override {// симметрию относительно точки
 		center = center * 2;
 		for (int i = 0; i < Vertices.size(); i++)
 		{
@@ -173,14 +184,14 @@ public:
 			double d = axis.A * axis.A + axis.B * axis.B;
 			for (int i = 0; i < Vertices.size(); i++)
 			{
-				point P;
+				Point P;
 				P.x = -(axis.A * axis.C + axis.B * (axis.A * Vertices[i].y - axis.B * Vertices[i].x)) / d;
 				P.y = -(axis.A * P.x + axis.C) / axis.B;
 				Vertices[i] = P * 2 - Vertices[i];
 			}
 		}
 	}
-	void scale(point center, double coefficient) override {// гомотетию с коэффициентом coefficient и центром center
+	void scale(Point center, double coefficient) override {// гомотетию с коэффициентом coefficient и центром center
 		for (int i = 0; i < Vertices.size(); i++)
 		{
 			Vertices[i] = (Vertices[i] - center) * coefficient + center;

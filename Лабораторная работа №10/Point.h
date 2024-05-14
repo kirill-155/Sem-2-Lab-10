@@ -1,58 +1,67 @@
 #pragma once
-#include <iostream>
+#include "Header.h"
 
 class Line;
 
-struct point
+struct Point
 {
 	double x = 0, y = 0;
 
-	point() = default;
+	Point() = default;
 
 	template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
-	point(T x, T y) : x(x), y(y) {}
+	Point(T x, T y) : x(x), y(y) {}
 
-	point(const point& p) : x(p.x), y(p.y) {}
+	Point(const Point& p) : x(p.x), y(p.y) {}
 
-	point& operator=(const point& B) {
+	Point& operator=(const Point& B) {
 		x = B.x;
 		y = B.y;
 		return *this;
 	}
 
-	point operator+(const point& B) const {
-		point res;
+	Point operator+(const Point& B) const {
+		Point res;
 		res.x = x + B.x;
 		res.y = y + B.y;
 		return res;
 	}
 
-	point operator-(const point& B) const {
-		point res;
+	Point operator-(const Point& B) const {
+		Point res;
 		res.x = x - B.x;
 		res.y = y - B.y;
 		return res;
 	}
 
-	point operator*(double k) const {
-		point res;
+	Point operator*(double k) const {
+		Point res;
 		res.x = x * k;
 		res.y = y * k;
 		return res;
 	}
 
-	point operator/(double k) const {
-		point res;
+	Point operator/(double k) const {
+		Point res;
 		res.x = x / k;
 		res.y = y / k;
 		return res;
 	}
 
-	void line(const point& B, double& a, double& b, double& c) const {
+	void draw() {
+		glPointSize(5);
+		glColor3f(0, 1, 0);
+		glBegin(GL_POINTS);
+		glVertex2f(x, y);
+		glEnd();
+		glFlush();
+	}
+
+	void line(const Point& B, double& a, double& b, double& c) const {
 		a = B.y - y, b = x - B.x, c = (-a) * x + (-b) * y;
 	}
 
-	double line(const point& B, const point& C) const {
+	double line(const Point& B, const Point& C) const {
 		double a = B.y - y, b = x - B.x, c = (-a) * x + (-b) * y;
 		return a * C.x + b * C.y + c;
 	}
@@ -65,19 +74,19 @@ struct point
 		return sqrt(x * x + y * y);
 	}
 
-	double dot(const point& B) const {// скалярное произведение
+	double dot(const Point& B) const {// скалярное произведение
 		return x * B.x + y * B.y;
 	}
 
-	double cross(const point& B) const {// вектрное произведение
+	double cross(const Point& B) const {// вектрное произведение
 		return x * B.y - y * B.x;
 	}
 
-	bool operator==(const point& B) const {
+	bool operator==(const Point& B) const {
 		return x == B.x && y == B.y;
 	}
 
-	bool operator!=(const point& B) const {
+	bool operator!=(const Point& B) const {
 		return !(*this == B);
 	}
 
@@ -89,29 +98,29 @@ struct point
 		return !(*this == B);
 	}
 
-	friend std::istream& operator>>(std::istream& in, point& p) {
+	friend std::istream& operator>>(std::istream& in, Point& p) {
 		in >> p.x >> p.y;
 		return in;
 	}
 
-	friend std::ostream& operator<<(std::ostream& out, const point& p) {
+	friend std::ostream& operator<<(std::ostream& out, const Point& p) {
 		out << p.x << " " << p.y;
 		return out;
 	}
 
-	void rotate(const point& center, double rad) {
+	void rotate(const Point& center, double rad) {
 		double x_2 = center.x + cos(rad) * (x - center.x) - sin(rad) * (y - center.y);
 		double y_2 = center.y + sin(rad) * (x - center.x) + cos(rad) * (y - center.y);
 		x = x_2;
 		y = y_2;
 	}
 
-	void scale(const point& center, double coe) {
+	void scale(const Point& center, double coe) {
 		x = (x - center.x) * coe + center.x;
 		y = (y - center.y) * coe + center.y;
 	}
 
-	void reflect(const point& center) {
+	void reflect(const Point& center) {
 		scale(center, -1);
 	}
 
