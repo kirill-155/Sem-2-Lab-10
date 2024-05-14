@@ -37,6 +37,32 @@ public:
 		glFlush();
 	}
 
+	void rotate(Point center, double rad) {
+		double cosN = cos(rad);
+		double sinN = sin(rad);
+
+		double a, b, c;
+		a = A * cosN - B * sinN;
+		b = A * sinN + B * cosN;
+		c = -a * center.x - b * center.y;
+
+		A = a;
+		B = b;
+		C = c;
+	}
+
+	void reflex(Line axis) {
+		double d = abs(A * axis.A + B * axis.B) / (pow(A, 2) + pow(B, 2));
+
+		double a = A - 2 * d * A;
+		double b = B - 2 * d * B;
+		double c = -a * axis.A - b * axis.B - axis.C;
+
+		A = a;
+		B = b;
+		C = c;
+	}
+
 	bool operator==(const Line& l) const {
 		return A == l.A && B == l.B && C == l.C;
 	}
