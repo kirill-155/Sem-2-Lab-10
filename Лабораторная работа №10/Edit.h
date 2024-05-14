@@ -150,7 +150,7 @@ void Editing(toEdit& a, int func) {
         cin >> p.x >> p.y;
         switch (a.figure) {
         case 0:
-            pointList[a.ind].reflect(p);
+            pointList[a.ind].reflex(p);
             break;
         case 1:
             //lineList[a.ind].reflect(p);
@@ -183,7 +183,7 @@ void Editing(toEdit& a, int func) {
         Line l1(p1, p2);
         switch (a.figure) {
         case 0:
-            pointList[a.ind].reflect(l1);
+            pointList[a.ind].reflex(l1);
             break;
         case 1:
             lineList[a.ind].reflex(l1);

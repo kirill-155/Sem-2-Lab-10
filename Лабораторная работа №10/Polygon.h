@@ -167,34 +167,15 @@ public:
 		}
 	}
 	void reflex(Point center) override {// симметрию относительно точки
-		center = center * 2;
 		for (int i = 0; i < Vertices.size(); i++)
-		{
-			Vertices[i] = center - Vertices[i];
-		}
+			Vertices[i].reflex(center);
 	}
 	void reflex(Line axis) override {// симметрию относительно прямой
-		if (axis.B == 0)
-		{
-			for (int i = 0; i < Vertices.size(); i++)
-				Vertices[i] = { (-axis.C / axis.A) * 2 - Vertices[i].x,(-axis.C / axis.A) * 2 - Vertices[i].y };
-		}
-		else
-		{
-			double d = axis.A * axis.A + axis.B * axis.B;
-			for (int i = 0; i < Vertices.size(); i++)
-			{
-				Point P;
-				P.x = -(axis.A * axis.C + axis.B * (axis.A * Vertices[i].y - axis.B * Vertices[i].x)) / d;
-				P.y = -(axis.A * P.x + axis.C) / axis.B;
-				Vertices[i] = P * 2 - Vertices[i];
-			}
-		}
+		for (int i = 0; i < Vertices.size(); i++)
+			Vertices[i].reflex(axis);
 	}
 	void scale(Point center, double coefficient) override {// гомотетию с коэффициентом coefficient и центром center
 		for (int i = 0; i < Vertices.size(); i++)
-		{
-			Vertices[i] = (Vertices[i] - center) * coefficient + center;
-		}
+			Vertices[i].scale(center, coefficient);
 	}
 };

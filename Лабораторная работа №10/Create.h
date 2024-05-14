@@ -3,15 +3,6 @@
 #include "Button.h"
 
 
-vector<Point> pointList = { Point(-3, 3), Point(3, -3), Point(3, -4), Point(3, -5) };
-vector<Line> lineList = { Line(Point(1.0, 1.0), Point(2.0, 2.0)), Line(5, 5) };
-vector<Polygon> polygonList = { Polygon({Point(1.0, 2.0), Point(3.0, 3.0), Point(1.0, 3.0)}) };
-vector<Ellipse> ellipseList = { Ellipse(Point(-3, 3), Point(3, -3), 15) };
-vector<Circle> circleList = { Circle(Point(1.0, 6.0), 4) };
-vector<Rectangle> rectangleList = { Rectangle(Point(1, 3), Point(2, 5), 2) };
-vector<Square> squareList = { Square(Point(6, 1), Point(7,2)) };
-vector<Triangle> triangleList = { Triangle(Point(-10, -10), Point(-8, -8), Point(-6, -10)) };
-
 void PointCreate() {
     cout << "¬ведите координаты точки: \n";
     double x, y;

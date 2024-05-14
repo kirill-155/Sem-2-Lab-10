@@ -49,12 +49,14 @@ public:
 		Point center = (f1 + f2) / 2;
 		double rad_1 = acos(abs(f1.x) / ((f1, f2).dist() / 2));
 		rad_1 = rad_1 * M_PI / 180.0;
+
+		if (f1 != f2) rad_1 = atan2(f1.y - f2.y, f1.x - f2.x);
+		else rad_1 = 0;
 		for (int i = 0; i < 361; i++) {
 			double rad = i * M_PI / 180.0;
 			Point dr;
-			dr.x = center.x + this->abc().first * sin(rad);
-			dr.y = center.y + this->abc().second * cos(rad);
-			if (f1 != f2)dr.rotate(center, rad_1);
+			dr.x = center.x + this->abc().first * cos(rad) * cos(rad_1) - abc().second * sin(rad) * sin(rad_1);
+			dr.y = center.y + this->abc().first * cos(rad) * sin(rad_1) + abc().second * sin(rad) * cos(rad_1);
 			glVertex2d(dr.x, dr.y);
 		}
 		glEnd();
@@ -108,12 +110,12 @@ public:
 		f2.rotate(center, rad);
 	}
 	void reflex(Point center) override {// симметрию относительно точки
-		f1.reflect(center);
-		f2.reflect(center);
+		f1.reflex(center);
+		f2.reflex(center);
 	}
 	void reflex(Line axis) override {// симметрию относительно прямой
-		f1.reflect(axis);
-		f2.reflect(axis);
+		f1.reflex(axis);
+		f2.reflex(axis);
 	}
 	void scale(Point center, double coefficient) override {// гомотетию с коэффициентом coefficient и центром center
 		f1.scale(center, coefficient);

@@ -121,11 +121,6 @@ void display() {
     glutSwapBuffers();
 }
 
-Button bRotate(-150, 255, 80, 40, "Rotate");
-Button bReflexPoint(-150, 255, 80, 40, "Point Reflex");
-Button bReflexLine(-150, 255, 80, 40, "Line Reflex");
-Button bScale(-150, 255, 80, 40, "Scale");
-
 void mouseClick(int button, int state, int x, int y) {
     setlocale(LC_ALL, "rus");
     double worldX, worldY, worldZ;
@@ -215,7 +210,7 @@ void menu(int& argc, char**& argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(wMenu, hMenu);
-    glutInitWindowPosition(10, 100);
+    glutInitWindowPosition(200, 100);
     glutCreateWindow("Меню");
 
     initMenu();
@@ -224,7 +219,7 @@ void menu(int& argc, char**& argv) {
     glutMouseFunc(mouseClick);
 
     glutInitWindowSize(wGrid, hGrid);
-    glutInitWindowPosition(510, 100);
+    glutInitWindowPosition(520, 100);
     glutCreateWindow("График");
 
     initGrid();

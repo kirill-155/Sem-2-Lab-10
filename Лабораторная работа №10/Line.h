@@ -84,16 +84,16 @@ Point intersect(const Line& first, const Line& second) {// точка пересечения
 	return { x, y };
 }
 
-void Point::reflect(const Line& line) {
+void Point::reflex(const Line& line) {
 	if (line.B == 0)
 	{
-		this->x = (-line.C / line.A) * 2 - this->x;
-		this->y = (-line.C / line.A) * 2 - this->y;
+		x = (-line.C / line.A) * 2 - x;
+		y = (-line.C / line.A) * 2 - y;
 	}
 	else
 	{
 		Point P;
-		P.x = -(line.A * line.C + line.B * (line.A * this->y - line.B * this->x)) / line.A * line.A + line.B * line.B;
+		P.x = -(line.A * line.C + line.B * (line.A * y - line.B * x)) / (line.A * line.A + line.B * line.B);
 		P.y = -(line.A * P.x + line.C) / line.B;
 		*this = P * 2 - *this;
 	}

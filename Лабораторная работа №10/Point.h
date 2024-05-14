@@ -120,9 +120,9 @@ struct Point
 		y = (y - center.y) * coe + center.y;
 	}
 
-	void reflect(const Point& center) {
+	void reflex(const Point& center) {
 		scale(center, -1);
 	}
 
-	void reflect(const Line& line);
+	void reflex(const Line& line);
 };
