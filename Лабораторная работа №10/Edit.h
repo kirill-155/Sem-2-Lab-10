@@ -67,7 +67,7 @@ void drawMenuEditFigure(int pick, int i, int x, int y) {
 }
 
 void Edit() {
-    glClearColor(0.0, 0.0, 1.0, 1.0);
+    glClearColor(0.5, 0.5, 1.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     int x = -150, y = 255;
     for (int i = 0; i < list.size(); i++) {

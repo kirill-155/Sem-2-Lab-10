@@ -156,7 +156,7 @@ void mouseClick(int button, int state, int x, int y) {
             display();
             menu_sost = 0;
         }
-        else if (bPoint.isButtonHovered(menuChoice) && menu_sost==1) {
+        else if (bPoint.isButtonHovered(menuChoice) && menu_sost == 1) {
             PointCreate();
         }
         else if (bLine.isButtonHovered(menuChoice) && menu_sost == 1) {
