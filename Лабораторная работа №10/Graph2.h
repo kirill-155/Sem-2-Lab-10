@@ -3,73 +3,15 @@
 #include "Point.h"
 #include "Line.h"
 #include "Polygon.h"
-//#include "GlutSettings.h"
 #include "Ellipse.h"
 #include "Circle.h"
 #include "Rectangle.h"
 #include "Square.h"
 #include "Triangle.h"
 #include "Graph2.h"
-
-class Button {
-private:
-    double x;
-    double y;
-    double width;
-    double height;
-    string text;
-public:
-    Button() : x(0), y(0), width(0), height(0), text("") {};
-    Button(double x, double y, double width, double height, string text)
-        : x(x), y(y), width(width), height(height), text(text) {};
-    Button(const Button& other) : x(other.x), y(other.y), width(other.width), height(other.height), text(other.text) {};
-    ~Button() {};
-    vector <double> colors;
-    void setColor(double first, double second, double third) {
-        colors.push_back(first);
-        colors.push_back(second);
-        colors.push_back(third);
-    }
-    void setPosition(double x_1, double y_1) {
-        x = x_1;
-        y = y_1;
-    }
-
-    void setText(const string text_1) {
-        text = text_1;
-    }
-
-    void drawButton() {
-
-        //Отрисовка кнопки
-        glBegin(GL_POLYGON);
-        glColor3f(colors[0], colors[1], colors[2]); // Серый цвет
-        glVertex2f(x, y);
-        glVertex2f(x + width, y);
-        glVertex2f(x + width, y + height);
-        glVertex2f(x, y + height);
-        glEnd();
-
-        glColor3f(0.0f, 0.0f, 0.0f); // Серый цвет
-        int textLength = text.size();
-        float textX = x + 1;
-        float textY = y + 1;
-
-        glRasterPos2f(textX, textY);
-        for (int i = 0; i < textLength; i++) {
-            glutBitmapCharacter(GLUT_BITMAP_8_BY_13, text[i]);
-        }
-    }
-
-    bool isButtonHovered(Point& najatie) {
-        return najatie.x >= this->x && najatie.x <= this->x + this->width &&
-            najatie.y >= this->y && najatie.y <= this->y + this->height;
-    }
-
-};
+#include "Button.h"
 
 vector<pair<int, int>> list = { {0, 0}, {1, 0}, {2, 0}, {3, 0}, {4,0}, {5, 0}, {6, 0}, {7, 0} };
-
 
 vector<Point> pointList = { Point(-3, 3), Point(3, -3), Point(3, -4), Point(3, -5) };
 vector<Line> lineList = { Line(Point(1.0, 1.0), Point(2.0, 2.0)), Line(5, 5) };
@@ -80,8 +22,6 @@ vector<Rectangle> rectangleList = { Rectangle(Point(1, 3), Point(2, 5), 2) };
 vector<Square> squareList = {Square(Point(6, 1), Point(7,2))};
 vector<Triangle> triangleList = { Triangle(Point(-10, -10), Point(-8, -8), Point(-6, -10))};
 
-const double scale = 20;
-
 void initGrid() {
     glClearColor(1.0, 1.0, 1.0, 1.0);
     glMatrixMode(GL_PROJECTION);
@@ -91,7 +31,7 @@ void initGrid() {
 }
 
 void initMenu() {
-    glClearColor(0.0, 0.0, 1.0, 1.0);
+    glClearColor(0.5, 0.5, 1.0, 1.0);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluOrtho2D(-wMenu / 2, wMenu / 2, -hMenu / 2, hMenu / 2);
@@ -182,9 +122,6 @@ void Grid() {
 }
 
 void drawMenu() {
-    bCreate.setColor(0.9, 0.0, 0.5);
-    bDelete.setColor(0.9, 0.0, 0.5);
-    bEdit1.setColor(0.9, 0.0, 0.5);
     bCreate.drawButton();
     bDelete.drawButton();
     bEdit1.drawButton();
@@ -211,56 +148,48 @@ void drawMenuDelFigure(int pick, int x, int y, int i) {
     case 0:
         bDel.setPosition(x, y);
         bDel.setText("Point");
-        bDel.setColor(0.9, 0.0, 0.5);
         bDel.drawButton();
         toDelete.push_back({ bDel, pick, i });
         break;
     case 1:
         bDel.setPosition(x, y);
         bDel.setText("Line");
-        bDel.setColor(0.9, 0.0, 0.5);
         bDel.drawButton();
         toDelete.push_back({ bDel, pick, i });
         break;
     case 2:
         bDel.setPosition(x, y);
         bDel.setText("Polygon");
-        bDel.setColor(0.9, 0.0, 0.5);
         bDel.drawButton();
         toDelete.push_back({ bDel, pick, i });
         break;
     case 3:
         bDel.setPosition(x, y);
         bDel.setText("Ellipse");
-        bDel.setColor(0.9, 0.0, 0.5);
         bDel.drawButton();
         toDelete.push_back({ bDel, pick, i });
         break;
     case 4:
         bDel.setPosition(x, y);
         bDel.setText("Circle");
-        bDel.setColor(0.9, 0.0, 0.5);
         bDel.drawButton();
         toDelete.push_back({ bDel, pick, i });
         break;
     case 5:
         bDel.setPosition(x, y);
         bDel.setText("Rectangle");
-        bDel.setColor(0.9, 0.0, 0.5);
         bDel.drawButton();
         toDelete.push_back({ bDel, pick, i });
         break;
     case 6:
         bDel.setPosition(x, y);
         bDel.setText("Square");
-        bDel.setColor(0.9, 0.0, 0.5);
         bDel.drawButton();
         toDelete.push_back({ bDel, pick, i });
         break;
     case 7:
         bDel.setPosition(x, y);
         bDel.setText("Triangle");
-        bDel.setColor(0.9, 0.0, 0.5);
         bDel.drawButton();
         toDelete.push_back({ bDel, pick, i });
         break;
@@ -279,7 +208,6 @@ void Delete() {
             y = 255;
         }
     }
-    bMenu.setColor(0.9, 0.0, 0.5);
     bMenu.drawButton();
     glFlush();
     glutSwapBuffers();
@@ -296,15 +224,6 @@ Button bSquare(-40, -15, 80, 40, "Square");
 Button bTriangle(-40, -60, 80, 40, "Triangle");
 
 void drawMenuFigure() {
-    bPoint.setColor(0.9, 0.0, 0.5);
-    bLine.setColor(0.9, 0.0, 0.5);
-    bPolygon.setColor(0.9, 0.0, 0.5);
-    bEllipse.setColor(0.9, 0.0, 0.5);
-    bCircle.setColor(0.9, 0.0, 0.5);
-    bRectangle.setColor(0.9, 0.0, 0.5);
-    bSquare.setColor(0.9, 0.0, 0.5);
-    bTriangle.setColor(0.9, 0.0, 0.5);
-    bMenu.setColor(0.9, 0.0, 0.5);
 
     bPoint.drawButton();
     bLine.drawButton();
@@ -582,56 +501,48 @@ void drawMenuEditFigure(int pick, int i, int x, int y) {
     case 0:
         bEdit.setPosition(x, y);
         bEdit.setText("Point");
-        bEdit.setColor(0.9, 0.0, 0.5);
         bEdit.drawButton();
         existFig.push_back({ bEdit, pick, i });
         break;
     case 1:
         bEdit.setPosition(x, y);
         bEdit.setText("Line");
-        bEdit.setColor(0.9, 0.0, 0.5);
         bEdit.drawButton();
         existFig.push_back({ bEdit, pick, i });
         break;
     case 2:
         bEdit.setPosition(x, y);
         bEdit.setText("Polygon");
-        bEdit.setColor(0.9, 0.0, 0.5);
         bEdit.drawButton();
         existFig.push_back({ bEdit, pick, i });
         break;
     case 3:
         bEdit.setPosition(x, y);
         bEdit.setText("Ellipse");
-        bEdit.setColor(0.9, 0.0, 0.5);
         bEdit.drawButton();
         existFig.push_back({ bEdit, pick, i });
         break;
     case 4:
         bEdit.setPosition(x, y);
         bEdit.setText("Circle");
-        bEdit.setColor(0.9, 0.0, 0.5);
         bEdit.drawButton();
         existFig.push_back({ bEdit, pick, i });
         break;
     case 5:
         bEdit.setPosition(x, y);
         bEdit.setText("Rectangle");
-        bEdit.setColor(0.9, 0.0, 0.5);
         bEdit.drawButton();
         existFig.push_back({ bEdit, pick, i });
         break;
     case 6:
         bEdit.setPosition(x, y);
         bEdit.setText("Square");
-        bEdit.setColor(0.9, 0.0, 0.5);
         bEdit.drawButton();
         existFig.push_back({ bEdit, pick, i });
         break;
     case 7:
         bEdit.setPosition(x, y);
         bEdit.setText("Triangle");
-        bEdit.setColor(0.9, 0.0, 0.5);
         bEdit.drawButton();
         existFig.push_back({ bEdit, pick, i });
         break;
@@ -650,7 +561,6 @@ void Edit() {
             y = 255;
         }
     }
-    bMenu.setColor(0.9, 0.0, 0.5);
     bMenu.drawButton();
     glFlush();
     glutSwapBuffers();
@@ -666,7 +576,6 @@ void Editing(toEdit& a) {
 }
 
 void mouseClick(int button, int state, int x, int y) {
-    setlocale(LC_ALL, "rus");
     double worldX, worldY, worldZ;
     GLint viewport[4];
     GLdouble modelview[16], projection[16];
@@ -738,12 +647,11 @@ void mouseClick(int button, int state, int x, int y) {
 }
 
 void menu(int& argc, char**& argv) {
-    setlocale(LC_ALL, "RUS");
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(wMenu, hMenu);
     glutInitWindowPosition(10, 100);
-    glutCreateWindow("1");
+    glutCreateWindow("Меню");
 
     initMenu();
 
@@ -752,7 +660,7 @@ void menu(int& argc, char**& argv) {
 
     glutInitWindowSize(wGrid, hGrid);
     glutInitWindowPosition(500, 100);
-    glutCreateWindow("2");
+    glutCreateWindow("График");
 
     initGrid();
     glutDisplayFunc(Grid);

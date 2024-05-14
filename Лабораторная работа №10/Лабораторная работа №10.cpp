@@ -17,6 +17,7 @@ void solve() {
 
 int main(int argc, char** argv)
 {
+	setlocale(LC_ALL, "RUS");
 	//setlocale(LC_ALL, "ru");
 	//glutInit(&argc, argv);
 

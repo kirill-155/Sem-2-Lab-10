@@ -11,3 +11,5 @@ double wGrid = 1000;
 double hGrid = 800;
 double wMenu = 500;
 double hMenu = 800;
+
+const double scale = 20;
