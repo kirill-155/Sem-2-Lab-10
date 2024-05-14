@@ -127,6 +127,7 @@ Button bReflexLine(-150, 255, 80, 40, "Line Reflex");
 Button bScale(-150, 255, 80, 40, "Scale");
 
 void mouseClick(int button, int state, int x, int y) {
+    setlocale(LC_ALL, "rus");
     double worldX, worldY, worldZ;
     GLint viewport[4];
     GLdouble modelview[16], projection[16];
@@ -180,8 +181,20 @@ void mouseClick(int button, int state, int x, int y) {
         else if (bTriangle.isButtonHovered(menuChoice) && menu_sost == 1) {
             TriangleCreate();
         }
+        else if (bRotate.isButtonHovered(menuChoice) && menu_sost == 4) {
+            Editing(global, 0);
+        }
+        else if (bReflexPoint.isButtonHovered(menuChoice) && menu_sost == 4) {
+            Editing(global, 1);
+        }
+        else if (bReflexLine.isButtonHovered(menuChoice) && menu_sost == 4) {
+            Editing(global, 2);
+        }
+        else if (bScale.isButtonHovered(menuChoice) && menu_sost == 4) {
+            Editing(global, 3);
+        }
         for (int i = 0; i < toDelete.size(); i++) {
-            if (toDelete[i].a.isButtonHovered(menuChoice) && menu_sost==2) {
+            if (toDelete[i].a.isButtonHovered(menuChoice) && menu_sost == 2) {
                 delFigure(toDelete[i].figure, toDelete[i].ind);
                 toDelete.clear();
                 Delete();
@@ -189,9 +202,10 @@ void mouseClick(int button, int state, int x, int y) {
         }
         for (int i = 0; i < existFig.size(); i++) {
             if (existFig[i].a.isButtonHovered(menuChoice) && menu_sost == 3) {
-                Editing(existFig[i]);
+                EdDraw();
+                global = existFig[i];
+                menu_sost = 4;
                 existFig.clear();
-                Edit();
             }
         }
     }
