@@ -63,6 +63,19 @@ public:
 		C = c;
 	}
 
+	void reflex(Point center) {
+		if (A != 0)
+		{
+			double X = -(B * center.y + C) / A;
+			C -= (center.x - X) * 2;
+		}
+		else
+		{
+			double Y = -C / B;
+			C += (center.y - C) * 2;
+		}
+	}
+
 	bool operator==(const Line& l) const {
 		return A == l.A && B == l.B && C == l.C;
 	}

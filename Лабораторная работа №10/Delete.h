@@ -3,12 +3,7 @@
 #include "Button.h"
 
 
-struct toDel {
-    Button a;
-    int figure;
-    int ind;
-};
-vector<toDel> toDelete;
+vector<toButFigur> toDelete;
 
 Button bDel(-150, 255, 80, 40, "");
 

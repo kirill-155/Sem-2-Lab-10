@@ -3,13 +3,7 @@
 #include "Button.h"
 
 
-struct toEdit {
-    Button a;
-    int figure;
-    int ind;
-};
-
-vector<toEdit> existFig;
+vector<toButFigur> existFig;
 
 Button bEdit(-150, 255, 80, 40, "");
 
@@ -89,13 +83,8 @@ Button bReflexLine(-40, 165, 110, 40, "Line Reflex");
 Button bScale(-40, 120, 110, 40, "Scale");
 
 void EdDraw() {
-    glClearColor(0.0, 0.0, 1.0, 1.0);
+    glClearColor(0.5, 0.5, 1.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
-
-    bRotate.setColor(0.9, 0.0, 0.5);
-    bReflexPoint.setColor(0.9, 0.0, 0.5);
-    bReflexLine.setColor(0.9, 0.0, 0.5);
-    bScale.setColor(0.9, 0.0, 0.5);
 
     bRotate.drawButton();
     bReflexPoint.drawButton();
@@ -107,7 +96,7 @@ void EdDraw() {
     glutSwapBuffers();
 }
 
-void Editing(toEdit& a, int func) {
+void Editing(toButFigur& a, int func) {
     if (func == 0) {
         cout << "Введите координаты точки, относительно которой будет производиться вращение и угол в градусах, на который будет произведен поворот: \n";
         Point p;
@@ -153,7 +142,7 @@ void Editing(toEdit& a, int func) {
             pointList[a.ind].reflex(p);
             break;
         case 1:
-            //lineList[a.ind].reflect(p);
+            lineList[a.ind].reflex(p);
             break;
         case 2:
             polygonList[a.ind].reflex(p);
@@ -245,4 +234,4 @@ void Editing(toEdit& a, int func) {
 
 }
 
-toEdit global;
+toButFigur global;

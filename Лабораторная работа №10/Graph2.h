@@ -13,8 +13,8 @@
 #include "Edit.h"
 #include "Create.h"
 #include "Delete.h"
+#include "Info.h"
 
-bool deleted = 0;
 int menu_sost = 0;
 
 void initGrid() {
@@ -93,8 +93,8 @@ void drawEmAll() {
 }
 
 void displayGrid() {
-    drawAxes();
     drawGrid();
+    drawAxes();
     drawEmAll();
     glFlush();
 }
@@ -112,6 +112,7 @@ void drawMenu() {
     bCreate.drawButton();
     bDelete.drawButton();
     bEdit1.drawButton();
+    bInfo.drawButton();
 }
 
 void display() {
@@ -147,6 +148,10 @@ void mouseClick(int button, int state, int x, int y) {
         else if (bEdit1.isButtonHovered(menuChoice) && menu_sost == 0) {
             Edit();
             menu_sost = 3;
+        }
+        else if (bInfo.isButtonHovered(menuChoice) && menu_sost == 0) {
+            Info();
+            menu_sost = 5;
         }
         else if (bMenu.isButtonHovered(menuChoice) && menu_sost != 0) {
             display();
@@ -188,21 +193,32 @@ void mouseClick(int button, int state, int x, int y) {
         else if (bScale.isButtonHovered(menuChoice) && menu_sost == 4) {
             Editing(global, 3);
         }
-        for (int i = 0; i < toDelete.size(); i++) {
-            if (toDelete[i].a.isButtonHovered(menuChoice) && menu_sost == 2) {
-                delFigure(toDelete[i].figure, toDelete[i].ind);
-                toDelete.clear();
-                Delete();
+        else if (menu_sost == 2) 
+            for (int i = 0; i < toDelete.size(); i++) {
+                if (toDelete[i].a.isButtonHovered(menuChoice) && menu_sost == 2) {
+                    delFigure(toDelete[i].figure, toDelete[i].ind);
+                    toDelete.clear();
+                    Delete();
+                }
             }
-        }
-        for (int i = 0; i < existFig.size(); i++) {
-            if (existFig[i].a.isButtonHovered(menuChoice) && menu_sost == 3) {
-                EdDraw();
-                global = existFig[i];
-                menu_sost = 4;
-                existFig.clear();
+        else if (menu_sost == 3)
+            for (int i = 0; i < existFig.size(); i++) {
+                if (existFig[i].a.isButtonHovered(menuChoice) && menu_sost == 3) {
+                    EdDraw();
+                    global = existFig[i];
+                    menu_sost = 4;
+                    existFig.clear();
+                }
             }
-        }
+        else if (menu_sost == 5)
+            for (int i = 0; i < ButInfo.size(); i++) {
+                if (ButInfo[i].a.isButtonHovered(menuChoice) && menu_sost == 5) {
+                    //EdDraw();
+                    //global = existFig[i];
+                    menu_sost = 6;
+                    ButInfo.clear();
+                }
+            }
     }
 }
 

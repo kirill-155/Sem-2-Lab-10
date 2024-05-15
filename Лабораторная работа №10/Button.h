@@ -65,6 +65,7 @@ vector<pair<int, int>> list = { {0, 0}, {1, 0}, {2, 0}, {3, 0}, {4,0}, {5, 0}, {
 Button bCreate(-40, 255, 80, 40, "Create");
 Button bDelete(-40, 210, 80, 40, "Delete");
 Button bEdit1(-40, 165, 80, 40, "Edit");
+Button bInfo(-40, 120, 80, 40, "Info");
 Button bMenu(-145, -255, 60, 30, "Menu");
 
 //Списки геометрических фигур
@@ -76,3 +77,9 @@ vector<Circle> circleList = { Circle(Point(1.0, 6.0), 4) };
 vector<Rectangle> rectangleList = { Rectangle(Point(1, 3), Point(2, 5), 2) };
 vector<Square> squareList = { Square(Point(6, 1), Point(7,2)) };
 vector<Triangle> triangleList = { Triangle(Point(-10, -10), Point(-8, -8), Point(-6, -10)) };
+
+struct toButFigur {
+    Button a;
+    int figure;
+    int ind;
+};
