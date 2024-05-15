@@ -137,7 +137,6 @@
     <ClInclude Include="Edit.h" />
     <ClInclude Include="Ellipse.h" />
     <ClInclude Include="glut.h" />
-    <ClInclude Include="GlutSettings.h" />
     <ClInclude Include="Graph2.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Info.h" />
